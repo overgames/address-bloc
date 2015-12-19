@@ -10,6 +10,17 @@ def check_entry(entry, expected_name, expected_number, expected_email)
   expect(entry.email).to eq expected_email
 end
 
+describe "#nuke" do
+  it "should delete all entries" do
+  book.add_entry("Ada Lovelace", "010.012.1815", "augusta.king@lovelace.com")
+  book.add_entry("Ada Lovelace", "010.012.1815", "augusta.king@lovelace.com")
+  book.add_entry("Ada Lovelace", "010.012.1815", "augusta.king@lovelace.com")
+
+  book.nuke
+  expect(book.entries.size).to eq(0)
+  end
+end
+
   describe "#binary_search" do
     it "searches AddressBook for a non-existent entry" do
       book.import_from_csv("entries.csv")
@@ -132,8 +143,6 @@ end
 
       check_entry(entry_five, "Sussie", "555-555-2036", "sussie@blocmail.com")
     end
-
-
   end
 
 end
